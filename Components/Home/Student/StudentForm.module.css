@@ -1,0 +1,33 @@
+.StudentForm{
+    display: flex;
+    flex-direction: column;
+    width: 45%;
+    justify-content: space-around;
+    height: 100%;
+    padding: 10px;
+}
+
+.formInput{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.formInput input,.formInput select{
+    width: 180px;
+    height: 35px;
+}
+
+.formInput input[type="radio"]{
+    width: 12px;
+    margin-left: -230px;
+}
+
+.StudentForm button{
+    width: 120px;
+    padding: 5px 2px;
+    background-color: #8c1818;
+    color: #fff;
+    border: 3px solid #8c1818;
+    margin-left: 150px;
+}

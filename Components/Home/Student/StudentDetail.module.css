@@ -1,0 +1,86 @@
+.studentDetail {
+  padding: 10px;
+}
+
+.studentInput {
+  display: flex;
+  justify-content: space-around;
+}
+
+.studentInput input,
+.studentInput select {
+  width: 120px;
+  background-color: #ddd;
+  border: 1px solid #ddd;
+  border-radius: 2px;
+  height: 30px;
+}
+
+.studentInput button {
+  width: 100px;
+  padding: 5px 2px;
+  background-color: #8c1818;
+  color: #fff;
+  border: 3px solid #8c1818;
+}
+
+.studentTable {
+  overflow-y: auto;
+  height: 350px;
+  padding: 15px;
+  font-size: 0.8rem;
+}
+
+.studentTable table {
+ 
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid #ddd;
+}
+
+.studentTable th {
+  background-color: #8c1818;
+  color: #fff;
+}
+
+.studentTable td,
+.studentTable th {
+  text-align: left;
+  padding: 8px;
+}
+
+
+.studentTable tr {
+  background-color: #f8dcdc;
+}
+
+.studentTable tr:nth-child(even) {
+  background-color: #fff;
+}
+
+.downloadBtn {
+  width: 140px;
+  padding: 5px 2px;
+  background-color: #8c1818;
+  color: #fff;
+  border: 3px solid #8c1818;
+  margin-left: 20px;
+  margin-top: 20px;
+  font-size: 0.8rem;
+}
+
+
+@media (max-width:800px){
+  .studentInput input,
+  .studentInput select,
+  .studentInput button {
+    width: 20%;
+  }
+}
+@media (max-width:400px){
+  .studentInput input,
+  .studentInput select,
+  .studentInput button {
+    width: 15%;
+  }
+}

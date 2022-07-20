@@ -1,0 +1,64 @@
+.authPage {
+  background-color: #8c1818;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  font-family: "Raleway", sans-serif;
+}
+
+.formAuth {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  justify-content: space-around;
+  height: 380px;
+  align-items: center;
+  width: 300px;
+  border-radius: 12px;
+  margin-top: 10px;
+}
+
+.formAuth h3 {
+  color: #8c1818;
+  letter-spacing: 1px;
+  font-size: 1.4rem;
+}
+
+.formAuth button {
+  width: 80%;
+  padding: 10px 5px;
+  background-color: #8c1818;
+  color: #fff;
+  border-radius: 24px;
+  border: 3px solid #8c1818;
+}
+
+.disable {
+  cursor: not-allowed;
+}
+
+.formAuth input[type="email"],
+.formAuth input[type="password"] {
+  border-radius: 24px;
+  width: 80%;
+  height: 10%;
+  border: 1px solid #aaa;
+}
+
+.formAuth input[type="checkbox"] {
+  accent-color: #8c1818;
+}
+.errorMsg {
+  width: 250px;
+  height: 70px;
+  border: 3px solid #fff;
+  border-radius: 24px;
+  text-align: center;
+  padding: 10px;
+  color: #fff;
+
+}
+
+

@@ -1,0 +1,24 @@
+
+
+.navbar{
+    font-family: 'Raleway', sans-serif;
+    background-color: #a91818;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 5px;
+    padding-left: 40px;
+    color: #eee;
+    display: flex;
+    justify-content: space-between;
+    height: 60px;
+}
+
+.subnav{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 20px;
+    font-size: 1.5rem;
+    width: 300px;
+}
