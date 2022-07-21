@@ -7,7 +7,7 @@ import StudentTable from "../../UI/Table";
 
 import classes from "./StudentDetail.module.css";
 
-const StudentDetail = ({ data, setData }) => {
+const StudentDetail = ({ data, setData, toggle, setEditId }) => {
   const [student, setStudent] = useState({
     name: "",
     age: "",
@@ -22,7 +22,6 @@ const StudentDetail = ({ data, setData }) => {
     setStudent((prev) => ({ ...prev, [name]: value }));
   };
 
-
   const { name, school, age, division } = student;
 
   const searchHandler = (e) => {
@@ -36,13 +35,12 @@ const StudentDetail = ({ data, setData }) => {
           item.school === school &&
           item.division === division &&
           item.age === age &&
-          item.class &&
+          item.class===
           student.class
       );
 
-        setData(filteredData)
-        setStudent({})
-    
+    setData(filteredData);
+    setStudent({});
   };
 
   return (
@@ -68,25 +66,30 @@ const StudentDetail = ({ data, setData }) => {
             onChange={inputHandler}
             name="school"
             placeholder="School"
-            values={["model school", "child school"]}
+            values={["model school", "AL school", "child school"]}
           />
           <SelectOption
             name="class"
             placeholder="Class"
-            values={[3, 4, 5]}
+            values={[1, 2, 3, 4, 5, 6, 7]}
             onChange={inputHandler}
           />
           <SelectOption
             name="division"
             placeholder="Division"
-            values={["A", "B"]}
+            values={["A", "B", "C"]}
             onChange={inputHandler}
           />
           <button>Search</button>
         </form>
       </div>
       <div className={classes.studentTable}>
-        <StudentTable data={data} />
+        <StudentTable
+          data={data}
+          toggle={toggle}
+          setData={setData}
+          setEditId={setEditId}
+        />
       </div>
       <button className={classes.downloadBtn}>
         Download Excel <HiDownload />

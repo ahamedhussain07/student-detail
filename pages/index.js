@@ -1,10 +1,14 @@
-import { MongoClient } from "mongodb";
+import StudentDataServices from "../services/Student-Services";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
 import Home from "../Components/Home/Home";
-const HomePage = ({students}) => {
+const HomePage = ({ data }) => {
+  // setStudentData(res.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+
+  const [studentData, setStudentData] = useState(data);
+
   const router = useRouter();
 
   useEffect(() => {
@@ -18,31 +22,17 @@ const HomePage = ({students}) => {
 
   return (
     <>
-      <Home data={students}  />
+      <Home studentData={studentData} setStudentData={setStudentData} />
     </>
   );
 };
 
-export async function getStaticProps() {
-  // fetch the data from api
+export async function getServerSideProps(ctx) {
+  const res = await StudentDataServices.getAllStudents();
 
-  const client = await MongoClient.connect(
-    process.env.NEXT_PUBLIC_MONGO_URL
-  );
+  const data = res.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
 
-  const db = client.db();
-
-  const studentCollection = db.collection("students");
-
-  const students = await studentCollection.find().toArray();
-
-  client.close();
-  return {
-    props: {
-      students,
-    },
-    revalidate: 1,
-  };
+  return { props: { data } };
 }
 
 export default HomePage;

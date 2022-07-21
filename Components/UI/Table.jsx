@@ -1,5 +1,5 @@
-import { useRouter } from "next/router";
-
+import StudentDataServices from "../../services/Student-Services";
+import {useRouter} from "next/router"
 const headers = [
   "ID'V",
   "Name",
@@ -8,9 +8,11 @@ const headers = [
   "Class",
   "Division",
   "Status",
+  "",
+  "",
 ];
-const StudentTable = ({ data }) => {
-  const router = useRouter();
+const StudentTable = ({ data, toggle, setData, setEditId }) => {
+  const router = useRouter()
   return (
     <>
       <table>
@@ -23,10 +25,15 @@ const StudentTable = ({ data }) => {
         </thead>
         <tbody>
           {data.length === 0 ? (
-            <tr style={{backgroundColor:"#ddd"}}>
+            <tr style={{ backgroundColor: "#ddd" }}>
               <td>no student found</td>
               <td>
-                <a style={{color:"blue",cursor:"pointer"}}  onClick={() => router.reload()}>Go Back</a>
+                <a
+                  style={{ color: "blue", cursor: "pointer" }}
+                  onClick={() => router.reload()}
+                >
+                  Go Back
+                </a>
               </td>
             </tr>
           ) : (
@@ -39,6 +46,38 @@ const StudentTable = ({ data }) => {
                 <td>{data.class}</td>
                 <td>{data.division}</td>
                 <td>{data.status}</td>
+                <td>
+                  <a
+                    style={{
+                      color: "blue",
+                      cursor: "pointer",
+                      textDecoration: "underline",
+                    }}
+                    onClick={() => {
+                      setEditId(data.id);
+                      toggle(true);
+                    }}
+                  >
+                    edit
+                  </a>
+                </td>
+                <td>
+                  <a
+                    style={{
+                      color: "blue",
+                      cursor: "pointer",
+                      textDecoration: "underline",
+                    }}
+                    onClick={() => {
+                      StudentDataServices.deleteStudent(data.id);
+                      setData((prev) =>
+                        prev.filter((item) => item.id !== data.id)
+                      );
+                    }}
+                  >
+                    delete
+                  </a>
+                </td>
               </tr>
             ))
           )}

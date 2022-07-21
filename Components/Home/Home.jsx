@@ -27,10 +27,10 @@ const dummyData = [
   },
 ];
 
-const Home = ({data}) => {
+const Home = ({ studentData, setStudentData }) => {
   const [studentToggle, setStudentToggle] = useState(false);
 
-  const [studentData, setStudentData] = useState(data);
+  const [editId, setEditId] = useState("");
 
   const toggleHandler = () => {
     setStudentToggle(!studentToggle);
@@ -69,9 +69,16 @@ const Home = ({data}) => {
             toggle={setStudentToggle}
             data={studentData}
             setData={setStudentData}
+            setEditId={setEditId}
+            editId={editId}
           />
         ) : (
-          <StudentDetail data={studentData} setData={setStudentData} />
+          <StudentDetail
+            data={studentData}
+            setData={setStudentData}
+            toggle={setStudentToggle}
+            setEditId={setEditId}
+          />
         )}
       </div>
     </div>
