@@ -1,24 +1,10 @@
 import StudentDataServices from "../services/Student-Services";
 
-import { useEffect, useState } from "react";
-import { useRouter } from "next/router";
+import { useState } from "react";
 
 import Home from "../Components/Home/Home";
 const HomePage = ({ data }) => {
-  // setStudentData(res.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-
   const [studentData, setStudentData] = useState(data);
-
-  const router = useRouter();
-
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    const expiresIn = localStorage.getItem("expiresIn");
-
-    if (!token) {
-      return router.push("/signin");
-    }
-  }, []);
 
   return (
     <>
