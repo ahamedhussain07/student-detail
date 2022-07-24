@@ -1,13 +1,18 @@
 import { useState } from "react";
 
+import * as XLSX from "xlsx";
+
 import { HiDownload } from "react-icons/hi";
 
-import SelectOption from "../../UI/Select";
-import StudentTable from "../../UI/Table";
+import SelectOption from "../../../UI/Select";
+import StudentTable from "../../../UI/Table";
+
+import ReactPaginate from "react-paginate";
 
 import classes from "./StudentDetail.module.css";
 
 const StudentDetail = ({ data, setData, toggle, setEditId }) => {
+  const [goBack, setGoBack] = useState(false);
   const [student, setStudent] = useState({
     name: "",
     age: "",
@@ -15,6 +20,18 @@ const StudentDetail = ({ data, setData, toggle, setEditId }) => {
     class: "",
     division: "",
   });
+
+  const [pageNumber, setPageNumber] = useState(0);
+  const studentPerPage = 8;
+  const pageVisited = pageNumber * studentPerPage;
+
+  const displayeStudent = data.slice(pageVisited, pageVisited + studentPerPage);
+
+  const pageCount = Math.ceil(data.length / studentPerPage);
+
+  const pageChangehandler = ({ selected }) => {
+    setPageNumber(selected);
+  };
 
   const inputHandler = (e) => {
     const { name, value } = e.target;
@@ -31,16 +48,26 @@ const StudentDetail = ({ data, setData, toggle, setEditId }) => {
       data &&
       data.filter(
         (item) =>
-          item.name === name &&
-          item.school === school &&
-          item.division === division &&
-          item.age === age &&
-          item.class===
-          student.class
+          item.name === name ||
+          item.school === school ||
+          item.division === division ||
+          item.age === age ||
+          item.class === student.class
       );
 
     setData(filteredData);
+    setGoBack(true);
     setStudent({});
+  };
+
+  const downloadHandler = () => {
+    const result = data.map(({ id, ...rest }) => ({ ...rest }));
+
+    let wb = XLSX.utils.book_new();
+    let ws = XLSX.utils.json_to_sheet(result);
+
+    XLSX.utils.book_append_sheet(wb, ws, "MySheet1");
+    XLSX.writeFile(wb, "StudentData.xlsx");
   };
 
   return (
@@ -85,13 +112,30 @@ const StudentDetail = ({ data, setData, toggle, setEditId }) => {
       </div>
       <div className={classes.studentTable}>
         <StudentTable
-          data={data}
+          goBack={goBack}
+          setGoBack={setGoBack}
+          data={displayeStudent}
           toggle={toggle}
           setData={setData}
           setEditId={setEditId}
         />
       </div>
-      <button className={classes.downloadBtn}>
+      <ReactPaginate
+        previousLabel={"<"}
+        nextLabel={">"}
+        pageCount={pageCount}
+        onPageChange={pageChangehandler}
+        containerClassName={"paginationBttns"}
+        previousLinkClassName={"previousBttn"}
+        nextLinkClassName={"nextBttn"}
+        disabledClassName={"paginationDisabled"}
+        activeClassName={"paginationActive"}
+      />
+      <button
+        className={classes.downloadBtn}
+        onClick={downloadHandler}
+        style={{ cursor: "pointer" }}
+      >
         Download Excel <HiDownload />
       </button>
     </>

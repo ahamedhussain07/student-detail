@@ -1,5 +1,5 @@
 import StudentDataServices from "../../services/Student-Services";
-import {useRouter} from "next/router"
+import { useRouter } from "next/router";
 const headers = [
   "ID'V",
   "Name",
@@ -11,8 +11,15 @@ const headers = [
   "",
   "",
 ];
-const StudentTable = ({ data, toggle, setData, setEditId }) => {
-  const router = useRouter()
+const StudentTable = ({
+  data,
+  toggle,
+  setData,
+  setEditId,
+  goBack,
+  setGoBack,
+}) => {
+  const router = useRouter();
   return (
     <>
       <table>
@@ -80,6 +87,19 @@ const StudentTable = ({ data, toggle, setData, setEditId }) => {
                 </td>
               </tr>
             ))
+          )}
+          {goBack && (
+            <td>
+              <a
+                style={{ color: "blue", cursor: "pointer" }}
+                onClick={() => {
+                  router.reload();
+                  setGoBack(false);
+                }}
+              >
+                Go Back
+              </a>
+            </td>
           )}
         </tbody>
       </table>

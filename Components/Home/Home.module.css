@@ -16,7 +16,7 @@
 
 .sidebarContent {
   background-color: #fff;
-  height: 550px;
+  height: 590px;
   border-right: 1px solid black;
 }
 
@@ -38,7 +38,7 @@
 .mainContent {
   width: 800px;
   background-color: #fff;
-  height: 550px;
+  height: 590px;
   /* box-shadow: 5px 5px 20px; */
 }
 

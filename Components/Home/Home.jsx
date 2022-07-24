@@ -3,8 +3,8 @@ import { useState } from "react";
 import { FaUserFriends, FaUserGraduate } from "react-icons/fa";
 import classes from "./Home.module.css";
 
-import StudentDetail from "./Student/StudentDetail";
-import StudentForm from "./Student/StudentForm";
+import StudentDetail from "./Student/StudentDetail/StudentDetail";
+import StudentForm from "./Student/StudentForm/StudentForm";
 
 const dummyData = [
   {

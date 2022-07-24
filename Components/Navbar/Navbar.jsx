@@ -1,7 +1,10 @@
-import { FaBell,FaUserCircle } from 'react-icons/fa';
+import { useRouter } from "next/router";
+
+import { FaBell, FaUserCircle } from "react-icons/fa";
 import classes from "./Navbar.module.css";
 
 const Navbar = (props) => {
+  const router = useRouter();
   return (
     <>
       <link
@@ -14,8 +17,16 @@ const Navbar = (props) => {
           <div>
             <FaBell />
           </div>
-          <div>
+          <div className={classes.userAvatar}>
             <FaUserCircle /> Anonymous
+          </div>
+          <div style={{cursor:"pointer"}}
+            onClick={() => {
+              localStorage.removeItem("token");
+              return router.replace("/signin");
+            }}
+          >
+            Logout
           </div>
         </div>
       </nav>

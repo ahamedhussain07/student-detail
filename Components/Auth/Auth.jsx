@@ -51,7 +51,7 @@ const AuthPage = () => {
 
       try {
         const res = await fetch(
-          "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key="+
+          "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=" +
             process.env.NEXT_PUBLIC_FIREBASE_API,
           {
             method: "POST",
@@ -67,17 +67,15 @@ const AuthPage = () => {
         const data = await res.json();
 
         localStorage.setItem("token", data.idToken);
-        localStorage.setItem("expiresIn", data.expiresIn);
 
         return router.push("/");
       } catch (error) {
-        console.log(error);
         return;
       }
     } else {
       try {
         const res = await fetch(
-          "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key="+
+          "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=" +
             process.env.NEXT_PUBLIC_FIREBASE_API,
           {
             method: "POST",
@@ -93,11 +91,8 @@ const AuthPage = () => {
         const data = await res.json();
 
         localStorage.setItem("token", data.idToken);
-        localStorage.setItem("expiresIn", data.expiresIn);
-
         return router.push("/");
       } catch (error) {
-        console.log(error);
         return;
       }
     }

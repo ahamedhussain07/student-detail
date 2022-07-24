@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 
-import StudentDataService from "../../../services/Student-Services";
+import StudentDataService from "../../../../services/Student-Services";
 
-import SelectOption from "../../UI/Select";
+import SelectOption from "../../../UI/Select";
 
 import classes from "./StudentForm.module.css";
 
@@ -10,7 +10,7 @@ const StudentForm = ({ data, setData, toggle, setEditId, editId }) => {
   const [updateBtn, setUpdateBtn] = useState(false);
 
   const [student, setStudent] = useState({
-    id:"",
+    id: "",
     name: "",
     school: "",
     age: "",
@@ -71,9 +71,8 @@ const StudentForm = ({ data, setData, toggle, setEditId, editId }) => {
 
       try {
         const datas = await StudentDataService.addStudent(student);
-        student.id = datas._key.path.segments[1]
+        student.id = datas._key.path.segments[1];
 
-       
         setData((prev) => [...prev, student]);
       } catch (error) {
         alert(error.message);
@@ -101,6 +100,8 @@ const StudentForm = ({ data, setData, toggle, setEditId, editId }) => {
       alert("error at fetching");
     }
   };
+
+  
 
   useEffect(() => {
     if (editId !== undefined && editId !== "") {
@@ -168,9 +169,8 @@ const StudentForm = ({ data, setData, toggle, setEditId, editId }) => {
               type="radio"
               id="status"
               name="status"
-              value={"active"}
+              value="active"
               onClick={inputHandler}
-              checked={status === "active"}
             />
           </>
           <>
@@ -179,9 +179,8 @@ const StudentForm = ({ data, setData, toggle, setEditId, editId }) => {
               type="radio"
               id="status"
               name="status"
-              value={"invoice"}
+              value="invoice"
               onClick={inputHandler}
-              checked={status === "invoice"}
             />
           </>
         </div>

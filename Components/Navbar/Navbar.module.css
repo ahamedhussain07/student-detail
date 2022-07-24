@@ -20,5 +20,11 @@
     align-items: center;
     padding: 20px;
     font-size: 1.5rem;
-    width: 300px;
+    width: 400px;
+}
+
+.subnav .userAvatar{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
 }
